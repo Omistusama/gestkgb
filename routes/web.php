@@ -21,4 +21,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::resource('missions', App\Http\Controllers\MissionController::class);
+// Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('missions.index');
+// Route::get('/missions/show', 'App\Http\Controllers\MissionController@show')->name('missions.show');
+// Route::get('/missions', 'App\Http\Controllers\MissionController@index');
+// Route::get('/missions', 'App\Http\Controllers\MissionController@index');
+
 require __DIR__.'/auth.php';
