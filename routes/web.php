@@ -22,6 +22,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('missions', App\Http\Controllers\MissionController::class);
+Route::resource('agents', App\Http\Controllers\AgentController::class);
 // Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('missions.index');
 // Route::get('/missions/show', 'App\Http\Controllers\MissionController@show')->name('missions.show');
 // Route::get('/missions', 'App\Http\Controllers\MissionController@index');

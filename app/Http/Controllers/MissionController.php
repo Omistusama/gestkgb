@@ -38,10 +38,10 @@ class MissionController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        // ]);
+        $request->validate([
+             'titre' => 'required',
+             'description' => 'required',
+         ]);
 
         Mission::create($request->all());
 
