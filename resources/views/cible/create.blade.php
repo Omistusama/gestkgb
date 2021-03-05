@@ -1,16 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Agents') }}
+            {{ __('Cibles') }}
         </h2>
     </x-slot>
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Ajouter un agent</h2>
+                <h2>Ajouter une cible</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('agents.index') }}"> Retour</a>
+                <a class="btn btn-primary" href="{{ route('cibles.index') }}"> Retour</a>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
         </div>
     @endif
 
-    <form action="{{ route('agents.store') }}" method="POST">
+    <form action="{{ route('cibles.store') }}" method="POST">
         @csrf
 
         <div class="row">
@@ -50,20 +50,14 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Code d'identification :</strong>
-                    <input type="text" class="form-control" name="codeidentification" placeholder="Entrez un Code">
+                    <strong>Nom de code :</strong>
+                    <input type="text" class="form-control" name="nomdecode" placeholder="Entrez un Code">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Nationalité :</strong>
                     <input type="text" name="nationalite" class="form-control" placeholder="Entrez une nationalité">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Spécialité:</strong>
-                    <input type="text" class="form-control" name="specialite" placeholder="Entrez une spécialité">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
