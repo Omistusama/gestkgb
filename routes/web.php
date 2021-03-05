@@ -24,9 +24,6 @@ Route::get('/dashboard', function () {
 Route::resource('missions', App\Http\Controllers\MissionController::class);
 Route::resource('agents', App\Http\Controllers\AgentController::class);
 Route::resource('cibles', App\Http\Controllers\CibleController::class);
-// Route::get('/missions', 'App\Http\Controllers\MissionController@index')->name('missions.index');
-// Route::get('/missions/show', 'App\Http\Controllers\MissionController@show')->name('missions.show');
-// Route::get('/missions', 'App\Http\Controllers\MissionController@index');
-// Route::get('/missions', 'App\Http\Controllers\MissionController@index');
+Route::resource('contacts', App\Http\Controllers\ContactController::class);
 
 require __DIR__.'/auth.php';

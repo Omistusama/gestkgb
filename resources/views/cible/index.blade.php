@@ -39,5 +39,5 @@
 
         </tbody>
     </table>
-    <a href="{{ route('cibles.create') }}" class="btn btn-success">Ajouter une mission</a>
+    <a href="{{ route('cibles.create') }}" class="btn btn-success">Ajouter une cible</a>
 </x-app-layout>
