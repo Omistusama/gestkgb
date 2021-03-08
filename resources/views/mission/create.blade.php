@@ -42,6 +42,96 @@
                     <textarea class="form-control" style="height:150px" name="description" placeholder="Enter Description"></textarea>
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Nom de code:</strong>
+                    <input type="text" name="nomdecode" class="form-control" placeholder="Enter Title">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Pays:</strong>
+                    <input type="text" name="pays" class="form-control" placeholder="Enter Title">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Agent(s):</strong>
+                    <br>
+                    <select class="form-control" name="agents[]" id="agents[]" multiple="multiple">
+                        <option value="">Choissisez un agent</option>
+                        @foreach ($agentdata as $key => $value)
+                            <option value="Agent {{$value->nom}} {{$value->prenom}}">Agent {{$value->nom}} ({{$value->codeidentification}})</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Contacts:</strong>
+                    <br>
+                    <select name="contacts[]" id="contacts[]" multiple="multiple">
+                        <option value="">Choissisez un contact</option>
+                        @foreach ($contactdata as $key => $value)
+                            <option value="Contact : {{$value->nom}} {{$value->prenom}}">{{$value->nom}} {{$value->prenom}} ({{$value->nomdecode}})</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Cibles:</strong>
+                    <br>
+                    <select name="cibles[]" id="cibles[]" multiple="multiple">
+                        <option value="">Choissisez une cible</option>
+                        @foreach ($cibledata as $key => $value)
+                            <option value="Cible : {{$value->nom}} {{$value->prenom}}">{{$value->nom}} {{$value->prenom}} ({{$value->nomdecode}})</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Type de mission:</strong>
+                    <input type="text" name="type" class="form-control" placeholder="Enter Title">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Statut:</strong>
+                    <input type="text" name="statut" class="form-control" placeholder="Enter Title">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Planque:</strong>
+                    <br>
+                    <select name="planque[]" id="planque[]" multiple="multiple">
+                        <option value="">Choissisez une planque</option>
+                        @foreach ($planquedata as $key => $value)
+                            <option value="Planque {{$value->code}}">Planque {{$value->code}} ({{$value->pays}})</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Spécialité:</strong>
+                    <input type="text" name="specialite" class="form-control" placeholder="Enter Title">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Date début:</strong>
+                    <input type="date" name="datedebut" class="form-control" placeholder="Enter Title">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Date de fin:</strong>
+                    <input type="date" name="datefin" class="form-control" placeholder="Enter Title">
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
             </div>

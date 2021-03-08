@@ -45,5 +45,8 @@
 
         </tbody>
     </table>
+    <div class="d-flex justify-content-center">
+        {!! $data->links() !!}
+    </div>
     <a href="{{ route('missions.create') }}" class="btn btn-success">Ajouter une mission</a>
 </x-app-layout>

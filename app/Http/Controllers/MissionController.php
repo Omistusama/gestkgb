@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mission;
+use App\Models\Contact;
+use App\Models\Planque;
+use App\Models\Agent;
+use App\Models\Cible;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class MissionController extends Controller
@@ -27,7 +32,12 @@ class MissionController extends Controller
      */
     public function create()
     {
-        return view('mission.create');
+        $contactdata = Contact::all();
+        $planquedata = Planque::all();
+        $agentdata = Agent::all();
+        $cibledata = Cible::all();
+
+        return view('mission.create', compact('contactdata', 'planquedata','agentdata','cibledata'));
     }
 
     /**
@@ -42,8 +52,16 @@ class MissionController extends Controller
              'titre' => 'required',
              'description' => 'required',
          ]);
-
-        Mission::create($request->all());
+        $input = $request->all();
+        $lesagents = $input['agents'];
+        $input['agents'] = implode(',', $lesagents);
+        $lescontacts = $input['contacts'];
+        $input['contacts'] = implode(',', $lescontacts);
+        $lescibles = $input['cibles'];
+        $input['cibles'] = implode(',', $lescibles);
+        $lesplanques = $input['planque'];
+        $input['planque'] = implode(',', $lesplanques);
+        Mission::create($input);
 
         return redirect()->route('missions.index')
                         ->with('success','Mission crée avec succès !');

@@ -12,4 +12,6 @@ class Mission extends Model
     protected $fillable = [
         'titre', 'description', 'nomdecode', 'pays', 'agents', 'cibles', 'contacts', 'planque', 'type', 'statut', 'specialite', 'datedebut', 'datefin'
     ];
+
+
 }
