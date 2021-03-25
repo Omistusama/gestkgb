@@ -11,4 +11,8 @@ class Agent extends Model
     protected $fillable = [
         'nom', 'prenom', 'datedenaissance', 'codeidentification', 'nationalite', 'specialite'
     ];
+    public function missions() {
+        return $this->belongsToMany(Mission::class, 'agentsinmissions');
+    }
+
 }

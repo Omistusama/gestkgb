@@ -107,7 +107,7 @@
                     <strong>Planque:</strong>
                     <br>
                     <select name="planque[]" id="planque[]" multiple="multiple">
-                        <option value="">Choissisez une planque</option>
+                        <option selected value="">Choissisez une planque</option>
                         @foreach ($planquedata as $key => $value)
                             <option value="Planque {{$value->code}}">Planque {{$value->code}} ({{$value->pays}})</option>
                         @endforeach

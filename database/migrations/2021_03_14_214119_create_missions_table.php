@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMissionTable extends Migration
+class CreateMissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,10 +19,6 @@ class CreateMissionTable extends Migration
             $table->longText('description');
             $table->longText('nomdecode');
             $table->string('pays');
-            $table->longText('agents');
-            $table->longText('cibles');
-            $table->longText('contacts');
-            $table->longText('planque');
             $table->string('type');
             $table->string('statut');
             $table->longText('specialite');

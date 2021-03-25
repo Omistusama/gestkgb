@@ -10,8 +10,11 @@ class Mission extends Model
     use HasFactory;
 
     protected $fillable = [
-        'titre', 'description', 'nomdecode', 'pays', 'agents', 'cibles', 'contacts', 'planque', 'type', 'statut', 'specialite', 'datedebut', 'datefin'
+        'titre', 'description', 'nomdecode', 'pays', 'type', 'statut', 'specialite', 'datedebut', 'datefin'
     ];
+    public function agents() {
+        return $this->belongsToMany(Agent::class, 'agentsinmissions');
+    }
 
 
 }

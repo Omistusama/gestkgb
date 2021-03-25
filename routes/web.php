@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AgentController;
+use App\Http\Controllers\CibleController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PlanqueController;
+use App\Http\Controllers\MissionController;
+use App\Http\Controllers\WelcomeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +21,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
-Route::resource('missions', App\Http\Controllers\MissionController::class);
-Route::resource('agents', App\Http\Controllers\AgentController::class);
-Route::resource('cibles', App\Http\Controllers\CibleController::class);
-Route::resource('contacts', App\Http\Controllers\ContactController::class);
-Route::resource('planques', App\Http\Controllers\PlanqueController::class);
+Route::resource('missions', MissionController::class);
+Route::resource('agents', AgentController::class);
+Route::resource('cibles', CibleController::class);
+Route::resource('contacts', ContactController::class);
+Route::resource('planques', PlanqueController::class);
 
 require __DIR__.'/auth.php';
