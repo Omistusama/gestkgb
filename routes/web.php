@@ -31,5 +31,6 @@ Route::resource('agents', AgentController::class);
 Route::resource('cibles', CibleController::class);
 Route::resource('contacts', ContactController::class);
 Route::resource('planques', PlanqueController::class);
+Route::get('missions.index', [MissionController::class, 'index']);
 
 require __DIR__.'/auth.php';

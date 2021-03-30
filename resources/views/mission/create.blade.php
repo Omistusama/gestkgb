@@ -30,110 +30,125 @@
         @csrf
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Title:</strong>
-                    <input type="text" name="titre" class="form-control" placeholder="Enter Title">
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Titre</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="titre" name="titre" placeholder="Entrez le titre" value="" required="">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Description:</strong>
-                    <textarea class="form-control" style="height:150px" name="description" placeholder="Enter Description"></textarea>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-12">
+                    <textarea id="description" name="description" required="" placeholder="Entrez une description" class="form-control"></textarea>                        </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Nom de code</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="nomdecode" name="nomdecode" placeholder="Entrez le nom de code" value="" required="">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Nom de code:</strong>
-                    <input type="text" name="nomdecode" class="form-control" placeholder="Enter Title">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Pays</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="pays" name="pays" placeholder="Entrez le pays " value="" required="">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Pays:</strong>
-                    <input type="text" name="pays" class="form-control" placeholder="Enter Title">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Agent(s):</strong>
-                    <br>
-                    <select class="form-control" name="agents[]" id="agents[]" multiple="multiple">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Agent(s)</label>
+                <div class="col-sm-12">
+                    <select class="form-control" name="agents[]" id="agents" multiple="multiple">
                         <option value="">Choissisez un agent</option>
                         @foreach ($agentdata as $key => $value)
-                            <option value="Agent {{$value->nom}} {{$value->prenom}}">Agent {{$value->nom}} ({{$value->codeidentification}})</option>
+                            <option value="{{$value->id}}">Agent {{$value->nom}} ({{$value->codeidentification}})</option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Contacts:</strong>
-                    <br>
-                    <select name="contacts[]" id="contacts[]" multiple="multiple">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Contact(s)</label>
+                <div class="col-sm-12">
+                    <select class="form-control" name="contacts[]" id="contacts" multiple="multiple">
                         <option value="">Choissisez un contact</option>
                         @foreach ($contactdata as $key => $value)
-                            <option value="Contact : {{$value->nom}} {{$value->prenom}}">{{$value->nom}} {{$value->prenom}} ({{$value->nomdecode}})</option>
+                            <option value="{{$value->id}}">{{$value->nom}} ({{$value->nomdecode}})</option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Cibles:</strong>
-                    <br>
-                    <select name="cibles[]" id="cibles[]" multiple="multiple">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Cible(s)</label>
+                <div class="col-sm-12">
+                    <select class="form-control" name="cibles[]" id="cibles" multiple="multiple">
                         <option value="">Choissisez une cible</option>
                         @foreach ($cibledata as $key => $value)
-                            <option value="Cible : {{$value->nom}} {{$value->prenom}}">{{$value->nom}} {{$value->prenom}} ({{$value->nomdecode}})</option>
+                            <option value="{{$value->id}}">{{$value->nom}} ({{$value->nomdecode}})</option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Type de mission:</strong>
-                    <input type="text" name="type" class="form-control" placeholder="Enter Title">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Statut:</strong>
-                    <input type="text" name="statut" class="form-control" placeholder="Enter Title">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Planque:</strong>
-                    <br>
-                    <select name="planque[]" id="planque[]" multiple="multiple">
-                        <option selected value="">Choissisez une planque</option>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Planque(s)</label>
+                <div class="col-sm-12">
+                    <select class="form-control" name="planque[]" id="planque" multiple="multiple">
+                        <option value="Aucune">Choissisez une planque</option>
                         @foreach ($planquedata as $key => $value)
-                            <option value="Planque {{$value->code}}">Planque {{$value->code}} ({{$value->pays}})</option>
+                            <option value="{{$value->id}}">{{$value->code}} ({{$value->type}})</option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Spécialité:</strong>
-                    <input type="text" name="specialite" class="form-control" placeholder="Enter Title">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Type</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="type" name="type" placeholder="Entrez le Type " value="" required="">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Date début:</strong>
-                    <input type="date" name="datedebut" class="form-control" placeholder="Enter Title">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Statut</label>
+                <div class="col-sm-12">
+                    <select class="form-control" name="statut" id="statut" multiple="multiple">
+                        <option value="">Choissisez un statut</option>
+                        <option value="En Préparation">En préparation</option>
+                        <option value="En cours">En cours</option>
+                        <option value="Terminé">Terminé</option>
+                        <option value="Echec">Echec</option>
+                    </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Date de fin:</strong>
-                    <input type="date" name="datefin" class="form-control" placeholder="Enter Title">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Spécialité</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="specialite" name="specialite" placeholder="Entrez la specialite " value="" required="">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Date de début</label>
+                <div class="col-sm-12">
+                    <input type="date" class="form-control" id="datedebut" name="datedebut" placeholder="Entrez la date de naissance" value="" required="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Date de fin</label>
+                <div class="col-sm-12">
+                    <input type="date" class="form-control" id="datefin" name="datefin" placeholder="Entrez la date de naissance" value="" required="">
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-offset-2 col-sm-10">
+             <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
+             </button>
             </div>
         </div>
 
