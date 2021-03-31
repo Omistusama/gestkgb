@@ -67,15 +67,25 @@ class MissionController extends Controller
               'datefin' => 'required',
         ]);
         $input = $request->all();
-        $lesagents = $input['agents'];
-        $input['agents'] = implode(',', $lesagents);
-        $lescontacts = $input['contacts'];
-        $input['contacts'] = implode(',', $lescontacts);
-        $lescibles = $input['cibles'];
-        $input['cibles'] = implode(',', $lescibles);
-        $lesplanques = $input['planque'];
-        $input['planque'] = implode(',', $lesplanques);
-        Mission::create($input);
+        $unemission = Mission::create($input);
+        $unemission->save();
+        foreach($request->agents as $unagent)
+        {
+            AgentInMission::create(['missions_id'=> $unemission->id,'agents_id'=> $unagent]);
+        }
+        foreach($request->contacts as $uncontact)
+        {
+            ContactInMission::create(['missions_id'=> $unemission->id,'contacts_id'=> $uncontact]);
+        }
+        foreach($request->planque as $uneplanque)
+        {
+            PlanqueInMission::create(['missions_id'=> $unemission->id,'planques_id'=> $uneplanque]);
+        }
+        foreach($request->cibles as $unecible)
+        {
+            CibleInMission::create(['missions_id'=> $unemission->id,'cibles_id'=> $unecible]);
+        }
+
 
         return redirect()->route('missions.index')
                         ->with('success','Mission crée avec succès !');
@@ -88,8 +98,20 @@ class MissionController extends Controller
      * @param  \App\Models\Mission  $mission
      * @return \Illuminate\Http\Response
      */
-    public function show(Mission $mission)
+    public function show($id)
     {
+        $mission = DB::table('missions')
+        ->join('agentsinmissions', 'missions.id', '=', 'agentsinmissions.missions_id')
+        ->join('agents', 'agentsinmissions.agents_id', '=', 'agents.id')
+        ->join('contactsinmissions', 'missions.id', '=', 'contactsinmissions.missions_id')
+        ->join('contacts', 'contactsinmissions.contacts_id', '=', 'contacts.id')
+        ->join('ciblesinmissions', 'missions.id', '=', 'ciblesinmissions.missions_id')
+        ->join('cibles', 'ciblesinmissions.cibles_id', '=', 'cibles.id')
+        ->join('planqueinmissions', 'missions.id', '=', 'planqueinmissions.missions_id')
+        ->join('planques', 'planqueinmissions.planques_id', '=', 'planques.id')
+        ->select('missions.*', 'contacts.nom as nomContact', 'contacts.prenom as prenomContact', 'agents.nom as nomAgent', 'agents.prenom as prenomAgent', 'planques.*', 'cibles.nom as nomCible', 'cibles.prenom as prenomCible')
+        ->where('missions.id', $id)
+        ->get();
         return view('mission.show',compact('mission'));
     }
 
@@ -101,7 +123,11 @@ class MissionController extends Controller
      */
     public function edit(Mission $mission)
     {
-        return view('mission.edit',compact('mission'));
+        $contactdata = Contact::all();
+        $planquedata = Planque::all();
+        $agentdata = Agent::all();
+        $cibledata = Cible::all();
+        return view('mission.edit',compact('mission', 'contactdata', 'planquedata','agentdata','cibledata'));
     }
 
     /**
@@ -128,14 +154,6 @@ class MissionController extends Controller
             'datefin' => 'required',
         ]);
         $input = $request->all();
-        $lesagents = $input['agents'];
-        $input['agents'] = implode(',', $lesagents);
-        $lescontacts = $input['contacts'];
-        $input['contacts'] = implode(',', $lescontacts);
-        $lescibles = $input['cibles'];
-        $input['cibles'] = implode(',', $lescibles);
-        $lesplanques = $input['planque'];
-        $input['planque'] = implode(',', $lesplanques);
 
         $mission->update($input);
 

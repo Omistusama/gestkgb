@@ -19,79 +19,98 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Titre :</strong>
-                {{ $mission->titre }}
+                {{ $mission[0]->titre }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Description :</strong>
-                {{ $mission->description }}
+                {{ $mission[0]->description }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nom de code de la mission :</strong>
-                {{ $mission->nomdecode }}
+                {{ $mission[0]->nomdecode }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Pays :</strong>
-                {{ $mission->pays }}
+                {{ $mission[0]->pays }}
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Agents sur le terrain :</strong>
-                {{ $mission->agents }}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Agent(s)</label>
+            <div class="col-sm-12">
+                <ul id="agentslist_show">
+                    @foreach ($mission as $key => $value)
+                        <li>{{$value->nomAgent}} {{$value->prenomAgent}}</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Cibles :</strong>
-                {{ $mission->cibles }}
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Contact(s)</label>
+            <div class="col-sm-12">
+                <ul id="contactslist_show">
+                    @foreach ($mission as $key => $value)
+                        <li>{{$value->nomContact}} {{$value->prenomContact}}</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Planques :</strong>
-                {{ $mission->planque }}
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Cible(s)</label>
+            <div class="col-sm-12">
+                <ul id="cibleslist_show">
+                    @foreach ($mission as $key => $value)
+                        <li>{{$value->nomCible}} {{$value->prenomCible}}</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Contacts :</strong>
-                {{ $mission->contacts }}
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Planque(s)</label>
+            <div class="col-sm-12">
+                <ul id="planqueslist_show">
+                    @foreach ($mission as $key => $value)
+                        <li>{{$value->code}} ({{$value->type}})</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Type :</strong>
-                {{ $mission->type }}
+                {{ $mission[0]->type }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Statut :</strong>
-                {{ $mission->statut }}
+                {{ $mission[0]->statut }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Spécialité :</strong>
-                {{ $mission->specialite }}
+                {{ $mission[0]->specialite }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Date de début :</strong>
-                {{ $mission->datedebut }}
+                {{ $mission[0]->datedebut }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Date de fin :</strong>
-                {{ $mission->datefin }}
+                {{ $mission[0]->datefin }}
             </div>
         </div>
     </div>
