@@ -26,11 +26,10 @@ Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-Route::resource('missions', MissionController::class);
-Route::resource('agents', AgentController::class);
-Route::resource('cibles', CibleController::class);
-Route::resource('contacts', ContactController::class);
-Route::resource('planques', PlanqueController::class);
-Route::get('missions.index', [MissionController::class, 'index']);
+Route::resource('missions', MissionController::class)->middleware(['auth']);
+Route::resource('agents', AgentController::class)->middleware(['auth']);
+Route::resource('cibles', CibleController::class)->middleware(['auth']);
+Route::resource('contacts', ContactController::class)->middleware(['auth']);
+Route::resource('planques', PlanqueController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';
